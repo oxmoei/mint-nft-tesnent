@@ -1,14 +1,11 @@
 'use client';
 
-import { useAccount, useConnect, useDisconnect } from 'wagmi';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import WalletConnect from '@/components/WalletConnect';
 
 export default function Header() {
-  const { address, isConnected } = useAccount();
-  const { connect, connectors } = useConnect();
-  const { disconnect } = useDisconnect();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
 
@@ -17,19 +14,17 @@ export default function Header() {
     setMounted(true);
   }, []);
 
-  const handleConnect = () => {
-    const injectedConnector = connectors.find(c => c.id === 'injected');
-    if (injectedConnector) {
-      connect({ connector: injectedConnector });
-    }
-  };
-
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
-      <nav className="container mx-auto px-6 md:px-10 lg:px-70 py-4">
+      <nav className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-70 py-3 md:py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
+          <a
+            href="https://alze.xyz"
+            className="flex items-center gap-2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <Image
               src="/assets/logo-DPgmRCGh.png"
               alt="alzelogo"
@@ -38,58 +33,66 @@ export default function Header() {
               className="rounded"
               style={{ width: 'auto', height: 'auto' }}
             />
-          </Link>
+          </a>
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center gap-6">
             <li>
-              <Link href="/" className="text-white hover:text-cyan-400 transition-colors flex items-center gap-1">
+              <a
+                href="https://alze.xyz"
+                className="text-white hover:text-cyan-400 transition-colors flex items-center gap-1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span>HOME</span>
-              </Link>
+              </a>
             </li>
             <li>
-              <Link href="/id" className="text-white hover:text-cyan-400 transition-colors">
+              <a
+                href="https://alze.xyz/id"
+                className="text-white hover:text-cyan-400 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 🔥 ALZE ID
-              </Link>
+              </a>
             </li>
             <li>
-              <Link href="/nfts" className="text-white hover:text-cyan-400 transition-colors flex items-center gap-1">
+              <a
+                href="https://alze.xyz/nfts"
+                className="text-white hover:text-cyan-400 transition-colors flex items-center gap-1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span>ALZE NFT</span>
-              </Link>
+              </a>
             </li>
             <li>
-              <Link href="/stake" className="text-white hover:text-cyan-400 transition-colors">
+              <a
+                href="https://alze.xyz/stake"
+                className="text-white hover:text-cyan-400 transition-colors"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 📍STAKE
-              </Link>
+              </a>
             </li>
             <li>
-              <Link href="/learn/phase1" className="text-white hover:text-cyan-400 transition-colors flex items-center gap-1">
+              <a
+                href="https://alze.xyz/learn/phase1"
+                className="text-white hover:text-cyan-400 transition-colors flex items-center gap-1"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <span>LEARN</span>
-              </Link>
+              </a>
             </li>
           </ul>
 
-          {/* Connect Wallet Button */}
-          <div className="flex items-center gap-4">
-            {mounted && isConnected ? (
-              <div className="flex items-center gap-3">
-                <div className="text-sm text-white/80 font-mono">
-                  {address?.slice(0, 6)}...{address?.slice(-4)}
-                </div>
-                <button
-                  onClick={() => disconnect()}
-                  className="px-4 py-2 connectButton text-white rounded-lg transition-colors"
-                >
-                  Disconnect
-                </button>
-              </div>
-            ) : (
-              <button
-                onClick={handleConnect}
-                className="px-6 py-2 connectButton text-white rounded-lg transition-all font-medium"
-              >
-                Connect Wallet
-              </button>
+          {/* Connect Wallet Button (uses shared WalletConnect with modal selector) */}
+          <div className="flex items-center gap-4 flex-shrink-0">
+            {mounted && (
+              <WalletConnect className="px-6 py-2" />
             )}
 
             {/* Mobile Menu Button */}
@@ -112,31 +115,56 @@ export default function Header() {
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 border-t border-white/10 pt-4">
-            <ul className="flex flex-col gap-4">
+            <ul className="flex flex-col gap-3">
               <li>
-                <Link href="/" className="text-white hover:text-cyan-400 transition-colors block">
+                <a
+                  href="https://alze.xyz"
+                  className="text-white hover:text-cyan-400 transition-colors block"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   HOME
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/id" className="text-white hover:text-cyan-400 transition-colors block">
+                <a
+                  href="https://alze.xyz/id"
+                  className="text-white hover:text-cyan-400 transition-colors block"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   🔥 ALZE ID
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/nfts" className="text-white hover:text-cyan-400 transition-colors block">
+                <a
+                  href="https://alze.xyz/nfts"
+                  className="text-white hover:text-cyan-400 transition-colors block"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   ALZE NFT
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/stake" className="text-white hover:text-cyan-400 transition-colors block">
+                <a
+                  href="https://alze.xyz/stake"
+                  className="text-white hover:text-cyan-400 transition-colors block"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   📍STAKE
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/learn/phase1" className="text-white hover:text-cyan-400 transition-colors block">
+                <a
+                  href="https://alze.xyz/learn/phase1"
+                  className="text-white hover:text-cyan-400 transition-colors block"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   LEARN
-                </Link>
+                </a>
               </li>
             </ul>
           </div>
