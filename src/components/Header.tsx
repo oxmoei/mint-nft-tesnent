@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import WalletConnect from '@/components/WalletConnect';
 
 export default function Header() {
@@ -25,13 +24,12 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <Image
+            <img
               src="/assets/logo-DPgmRCGh.png"
-              alt="alzelogo"
+              alt="alze logo"
               width={80}
               height={80}
-              className="rounded"
-              style={{ width: 'auto', height: 'auto' }}
+              className="rounded h-8 sm:h-10 w-auto"
             />
           </a>
 
