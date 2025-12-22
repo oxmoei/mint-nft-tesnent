@@ -32,12 +32,12 @@ const WALLET_TOKENS_CACHE_DURATION = 60 * 1000; // 60 秒缓存
 
 // NFT 配置 - 请根据实际情况修改
 const nft = {
-  name: 'NeoArc',
+  name: 'Memorial',
   blockChain: 'Arc Testnet',
   address: '0xE61C000000000000000000000000000000007A8D' as `0x${string}`,
   image: '/assets/Frame-830.png',
   price: 0, // 0 表示 Free
-  description: 'NeonArc — a radiant fusion of light and code, born on the ARC testnet. Where every mint sparks a pulse of digital energy across the blockchain.',
+  description: 'Memorial — a radiant fusion of light and code, born on the ARC testnet. Where every mint sparks a pulse of digital energy across the blockchain.',
   explorerLink: '',
   tasks: [] as { id: number; title: string; link: string; completed: boolean }[],
 };
