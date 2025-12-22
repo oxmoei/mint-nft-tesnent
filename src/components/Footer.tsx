@@ -9,10 +9,10 @@ export default function Footer() {
           <aside className="lg:col-span-4 mb-8 lg:mb-0">
             <div className="flex items-center gap-3 mb-4 sm:mb-6">
               <img
-                src="/assets/logo-DPgmRCGh.png"
+                src="/assets/alze-logo.webp"
                 alt="Alze logo"
-                width={48}
-                height={48}
+                width={40}
+                height={40}
                 className="rounded-lg"
               />
               <h5 className="text-2xl font-bold text-white">Alze</h5>

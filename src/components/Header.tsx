@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { Home } from 'lucide-react';
 import WalletConnect from '@/components/WalletConnect';
 
 export default function Header() {
@@ -42,6 +43,7 @@ export default function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
+                <Home className="w-4 h-4" />
                 <span>HOME</span>
               </a>
             </li>
@@ -87,11 +89,9 @@ export default function Header() {
             </li>
           </ul>
 
-          {/* Connect Wallet Button (uses shared WalletConnect with modal selector) */}
+          {/* Connect Wallet Button */}
           <div className="flex items-center gap-4 flex-shrink-0">
-            {mounted && (
-              <WalletConnect className="px-6 py-2" />
-            )}
+            {mounted && <WalletConnect className="px-6 py-2" />}
 
             {/* Mobile Menu Button */}
             <button
@@ -117,10 +117,11 @@ export default function Header() {
               <li>
                 <a
                   href="https://alze.xyz"
-                  className="text-white hover:text-cyan-400 transition-colors block"
+                  className="text-white hover:text-cyan-400 transition-colors flex items-center gap-2"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
+                  <Home className="w-4 h-4" />
                   HOME
                 </a>
               </li>

@@ -184,6 +184,7 @@ export default function NFTCheckout() {
   const [quantity, setQuantity] = useState(1);
   const [mounted, setMounted] = useState(false);
   const [isMintingBatch, setIsMintingBatch] = useState(false);
+  const [hasSwitchedToMainnet, setHasSwitchedToMainnet] = useState(false);
 
   const {
     data: hash,
@@ -363,8 +364,8 @@ export default function NFTCheckout() {
       if (!isDelegated) {
         setIsMintingBatch(false);
         alert(
-          'Your wallet has not completed the 7702 upgrade yet. Please finish the upgrade, then come back and click "MINT NOW".\nSteps: \nOpen OKX Wallet → More → 7702 Upgrade\n\n' +
-          '检测到你的钱包尚未完成7702升级，请先完成7702升级后再返回点击"MINT NOW"\n步骤：\n打开OKX钱包 → 更多 → 7702升级'
+          'Your wallet has not completed the 7702 upgrade yet. Please finish the upgrade, then come back and click "MINT".\nSteps: \nOpen OKX Wallet → More → 7702 Upgrade\n\n' +
+          '检测到你的钱包尚未完成7702升级，请先完成7702升级后再返回点击"MINT"\n步骤：\n打开OKX钱包 → 更多 → 7702升级'
         );
         return;
       }
@@ -725,12 +726,17 @@ export default function NFTCheckout() {
       return;
     }
 
-    if (!isOnEthereumMainnet) {
-      try {
-        await switchChain({ chainId: mainnet.id });
-      } catch (err) {
-        console.error('Switch chain failed:', err);
+    // 第一次点击：无论当前是否在主网，都先走「切换」逻辑，然后再允许 Mint
+    if (!hasSwitchedToMainnet) {
+      if (!isOnEthereumMainnet) {
+        try {
+          await switchChain({ chainId: mainnet.id });
+        } catch (err) {
+          console.error('Switch chain failed:', err);
+          return;
+        }
       }
+      setHasSwitchedToMainnet(true);
       return;
     }
 
@@ -779,7 +785,14 @@ export default function NFTCheckout() {
           <div className="p-4 sm:p-6 md:p-10 w-full">
             <h1 className="text-2xl sm:text-3xl md:text-4xl font-semibold">{nft.name}</h1>
             <div className="font-PTSans outline-1 outline-dashed outline-offset-2 rounded-sm mt-4 mb-4 inline-block px-3 py-1">
-              <p className="text-xs text-center">{nft.blockChain}</p>
+              <div className="flex items-center justify-center gap-2">
+                <img
+                  src="/arc-logo.jpg"
+                  alt="Arc Logo"
+                  className="h-3 w-3 sm:h-4 sm:w-4 object-contain"
+                />
+                <p className="text-xs text-center">{nft.blockChain}</p>
+              </div>
             </div>
 
             <div className="flex w-full items-center backdrop-blur-md">
@@ -847,7 +860,7 @@ export default function NFTCheckout() {
                             <Loader2 className="w-4 h-4 animate-spin" />
                             {isConfirming ? 'Confirming...' : 'Minting...'}
                           </span>
-                        ) : !isOnEthereumMainnet ? (
+                        ) : !hasSwitchedToMainnet ? (
                           'Switch to Arc Testnet'
                         ) : (
                           'Mint'
