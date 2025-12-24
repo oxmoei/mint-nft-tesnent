@@ -16,12 +16,12 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-md border-b border-white/10">
-      <nav className="container mx-auto px-4 sm:px-6 md:px-10 lg:px-70 py-3 md:py-4">
-        <div className="flex items-center justify-between">
+      <nav className="container mx-auto px-4 sm:px-6 md:px-8 lg:px-16 xl:px-20 py-3 md:py-4 max-w-[1920px]">
+        <div className="flex items-center justify-between gap-2 md:gap-4 min-w-0">
           {/* Logo */}
           <a
             href="https://alze.xyz"
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 flex-shrink-0 min-w-0"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -30,57 +30,57 @@ export default function Header() {
               alt="alze logo"
               width={80}
               height={80}
-              className="rounded h-8 sm:h-10 w-auto"
+              className="rounded h-8 sm:h-10 w-auto flex-shrink-0 block"
             />
           </a>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-6">
-            <li>
+          <ul className="hidden md:flex items-center gap-3 lg:gap-4 xl:gap-6 flex-shrink-0 min-w-0">
+            <li className="flex-shrink-0">
               <a
                 href="https://alze.xyz"
-                className="text-white hover:text-cyan-400 transition-colors flex items-center gap-1"
+                className="text-white hover:text-cyan-400 transition-colors flex items-center gap-1 whitespace-nowrap text-sm lg:text-base"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <Home className="w-4 h-4" />
+                <Home className="w-4 h-4 flex-shrink-0" />
                 <span>HOME</span>
               </a>
             </li>
-            <li>
+            <li className="flex-shrink-0">
               <a
                 href="https://alze.xyz/id"
-                className="text-white hover:text-cyan-400 transition-colors"
+                className="text-white hover:text-cyan-400 transition-colors whitespace-nowrap text-sm lg:text-base"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 🔥 ALZE ID
               </a>
             </li>
-            <li>
+            <li className="flex-shrink-0">
               <a
                 href="https://alze.xyz/nfts"
-                className="text-white hover:text-cyan-400 transition-colors flex items-center gap-1"
+                className="text-white hover:text-cyan-400 transition-colors flex items-center gap-1 whitespace-nowrap text-sm lg:text-base"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <span>ALZE NFT</span>
               </a>
             </li>
-            <li>
+            <li className="flex-shrink-0">
               <a
                 href="https://alze.xyz/stake"
-                className="text-white hover:text-cyan-400 transition-colors"
+                className="text-white hover:text-cyan-400 transition-colors whitespace-nowrap text-sm lg:text-base"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 📍STAKE
               </a>
             </li>
-            <li>
+            <li className="flex-shrink-0">
               <a
                 href="https://alze.xyz/learn/phase1"
-                className="text-white hover:text-cyan-400 transition-colors flex items-center gap-1"
+                className="text-white hover:text-cyan-400 transition-colors flex items-center gap-1 whitespace-nowrap text-sm lg:text-base"
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -90,7 +90,7 @@ export default function Header() {
           </ul>
 
           {/* Connect Wallet Button */}
-          <div className="flex items-center gap-4 flex-shrink-0">
+          <div className="flex items-center gap-2 md:gap-4 flex-shrink-0">
             {mounted && <WalletConnect className="px-6 py-2" />}
 
             {/* Mobile Menu Button */}

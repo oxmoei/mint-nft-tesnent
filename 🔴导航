@@ -13,3 +13,6 @@ http://localhost:3000
 
 #同步到https://github.com/web3cryptoguy/mint-nft/tree/main，自动部署
 git add . && git commit -m "update" && git push origin main
+
+#网站
+https://arc-memorial.netlify.app/
