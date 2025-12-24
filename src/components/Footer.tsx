@@ -27,7 +27,7 @@ export default function Footer() {
           </aside>
 
           {/* Links Container */}
-          <div className="lg:col-span-8 grid grid-cols-3 gap-3 sm:gap-5 md:gap-8 lg:gap-12 xl:gap-16 lg:justify-items-end lg:ml-auto">
+          <div className="lg:col-span-8 grid grid-cols-3 gap-3 sm:gap-5 md:gap-8 lg:gap-18 xl:gap-22 lg:justify-items-end lg:ml-auto">
             {/* ALZE Links */}
             <nav className="min-w-0">
               <h3 className="text-white font-semibold text-xs sm:text-sm md:text-base lg:text-lg mb-2 sm:mb-3 md:mb-5 whitespace-nowrap">
